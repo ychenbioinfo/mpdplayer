@@ -17,7 +17,7 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: #1c3298;
+    background: #256298;
     cursor: pointer;
     vertical-align:middle;
 }
@@ -26,9 +26,13 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: #1c3298;
+    background: #256298;
     cursor: pointer;
     vertical-align:middle;
+}
+
+.volume_icon {
+    margin-top: 10px;
 }
 
 a:link, a:visited, a:hover, a:active {
