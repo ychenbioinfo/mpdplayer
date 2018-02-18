@@ -239,9 +239,16 @@ $(document).ready(function () {
         }
 
         update_settings(data);
-        $('#name').text(data.play_num + ". " + data.name);
+        if(data.mode === 0){
+            $('#play_percentage').val(0);
+        }
+        else {
+            $('#name').text(data.play_num + ". " + data.name);
+            $('#play_percentage').val(data.percentage);
+        }
+
         $('#volume').text('Volume: ' + data.volume);
-        $('#play_percentage').val(data.percentage);
+
         $('#volume-percentage').val(data.volume);
     }
 
