@@ -263,9 +263,11 @@ $(document).ready(function () {
 
     function start_sync() {
         console.log("Call start sync");
-        timer = setInterval(function(){
-            load_status();
-        }, sync_interval);
+        if(timer === null) {
+            timer = setInterval(function () {
+                load_status();
+            }, sync_interval);
+        };
     }
 
     function stop_sync() {
