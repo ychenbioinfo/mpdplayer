@@ -3,7 +3,6 @@ import subprocess
 
 def read_settings(settings):
     data = settings.split()
-    print(data)
     volume = data[1][:-1]
     if data[3] == "on":
         repeat = 1

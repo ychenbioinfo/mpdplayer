@@ -21,7 +21,7 @@ $(document).ready(function () {
     });
     $('#btn-pause').click(function (e) {
         // e.preventDefault();
-        console.log("play button clicked!");
+        // console.log("play button clicked!");
         pause_mode();
         mpd_mode = 1;
         $.ajax({
@@ -105,7 +105,7 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 update_status(data);
             },
         });
@@ -164,7 +164,7 @@ $(document).ready(function () {
 
     function update_settings(data) {
         if(data.shuffle === 0){
-            console.log("update shuffle");
+            // console.log("update shuffle");
             change_button_status($('#btn-shuffle'), 0);
         }
         else{
@@ -187,7 +187,7 @@ $(document).ready(function () {
     }
 
     function play_mode(){
-        console.log("call play mode");
+        // console.log("call play mode");
         $('#btn-play').hide();
         $('#btn-pause').show();
         $('#btn-backward').css('color', enable_color);
@@ -208,7 +208,7 @@ $(document).ready(function () {
     }
 
     function stop_mode() {
-        console.log("call stop mode");
+        // console.log("call stop mode");
         $('#btn-play').show();
         $('#btn-pause').hide();
         $('#btn-backward').css('color', 'gray');
@@ -253,14 +253,14 @@ $(document).ready(function () {
     }
 
     function load_status(){
-        console.log("load status");
+        // console.log("load status");
         $.ajax({
             type: 'POST',
             url: $SCRIPT_ROOT + '_status',
             contentType: false,
             processData: false,
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 update_status(data);
             },
         });
@@ -269,7 +269,7 @@ $(document).ready(function () {
     load_status();
 
     function start_sync() {
-        console.log("Call start sync");
+        // console.log("Call start sync");
         if(timer === null) {
             timer = setInterval(function () {
                 load_status();

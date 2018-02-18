@@ -22,8 +22,6 @@ def play_music():
 def play_music_index():
     if request.method == 'POST':
         req_data = request.json
-        print("AAAAAA")
-        print(req_data)
         index = req_data.get('index')
         status = run_command(['mpc', 'play', str(index)])
         return jsonify(status)
