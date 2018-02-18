@@ -7,12 +7,8 @@ $(document).ready(function () {
     var first_load = 1;
 
     $('#btn-play').click(function (e) {
-        if(mpd_mode === 0){
-            play_mode();
-            mpd_mode = 1;
-        }
-        $('#btn-play').hide();
-        $('#btn-pause').show();
+        play_mode();
+        mpd_mode = 1;
         $.ajax({
             type: 'POST',
             url: $SCRIPT_ROOT + '_play',
@@ -26,8 +22,8 @@ $(document).ready(function () {
     $('#btn-pause').click(function (e) {
         // e.preventDefault();
         console.log("play button clicked!");
-        $('#btn-pause').hide();
-        $('#btn-play').show();
+        pause_mode();
+        mpd_mode = 1;
         $.ajax({
             type: 'POST',
             url: $SCRIPT_ROOT + '_pause',
@@ -109,6 +105,7 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (data) {
+                console.log(data);
                 update_status(data);
             },
         });
@@ -140,6 +137,21 @@ $(document).ready(function () {
         });
     });
 
+    $('.music_play').click(function(e) {
+        var parent = $(e.target).closest('.play-group').html();
+        var index = $(parent).children("span");
+        play_mode();
+        $.ajax({
+            type: 'POST',
+            url: $SCRIPT_ROOT + '_play_index',
+            data: JSON.stringify({'index': index.text()}),
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                update_status(data);
+            },
+        });
+    });
+
 
     function change_button_status(button, status) {
         if(status === 0){
@@ -151,12 +163,8 @@ $(document).ready(function () {
     }
 
     function update_settings(data) {
-        if(data.play_mode === 1){
-            $('#btn-play').hide();
-            $('#btn-pause').show();
-        }
-
         if(data.shuffle === 0){
+            console.log("update shuffle");
             change_button_status($('#btn-shuffle'), 0);
         }
         else{
@@ -180,11 +188,23 @@ $(document).ready(function () {
 
     function play_mode(){
         console.log("call play mode");
+        $('#btn-play').hide();
+        $('#btn-pause').show();
         $('#btn-backward').css('color', enable_color);
         $('#btn-backward').attr('href', '#');
         $('#btn-forward').css('color', enable_color);
         $('#btn-forward').attr('href', '#');
         start_sync();
+    }
+
+    function pause_mode() {
+        $('#btn-play').show();
+        $('#btn-pause').hide();
+        $('#btn-backward').css('color', enable_color);
+        $('#btn-backward').attr('href', '#');
+        $('#btn-forward').css('color', enable_color);
+        $('#btn-forward').attr('href', '#');
+        stop_sync();
     }
 
     function stop_mode() {
@@ -195,30 +215,31 @@ $(document).ready(function () {
         $('#btn-backward').removeAttr('href');
         $('#btn-forward').css('color', 'gray');
         $('#btn-forward').removeAttr('href');
+        $('#play_percentage').val(0);
         stop_sync();
     }
 
 
     function update_status(data){
-        if(data.mode === 0){
-            if(mpd_mode === 1) {
+        if(first_load === 1){
+            if(data.mode === 0){
                 stop_mode();
                 mpd_mode = 0;
             }
-            if(first_load === 1){
-                stop_mode();
-                first_load = 0;
-            }
-        }
-        else{
-            if(mpd_mode === 0 ) {
-                play_mode();
+            else{
+                if(data.play_mode == 0){
+                    pause_mode();
+                }
+                else{
+                    play_mode();
+                }
                 mpd_mode = 1;
             }
+            first_load = 0;
         }
 
-        update_settings(data)
-        $('#name').text(data.name);
+        update_settings(data);
+        $('#name').text(data.play_num + ". " + data.name);
         $('#volume').text('Volume: ' + data.volume);
         $('#play_percentage').val(data.percentage);
         $('#volume-percentage').val(data.volume);

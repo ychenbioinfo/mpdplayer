@@ -3,27 +3,30 @@ import subprocess
 
 def read_settings(settings):
     data = settings.split()
+    print(data)
     volume = data[1][:-1]
-    if data[2] == "on":
+    if data[3] == "on":
         repeat = 1
     else:
         repeat = 0
 
-    if data[4] == "on":
+    if data[5] == "on":
         shuffle = 1
     else:
         shuffle = 0
 
-    if data[6] == "on":
+    if data[7] == "on":
         single = 1
     else:
         single = 0
 
-    return {"volume": volume,
-            "repeat": repeat,
-            "shuffle": shuffle,
-            "single": single
-            }
+    values = {"volume": volume,
+              "repeat": repeat,
+              "shuffle": shuffle,
+              "single": single
+              }
+
+    return values
 
 
 def read_play_info(data):
@@ -76,4 +79,16 @@ def run_command(command: list):
     status_lines = output.decode().splitlines()
     status = read_status(status_lines)
     return status
+
+
+def get_playlist():
+    p = subprocess.Popen(['mpc', 'playlist'], stdin=subprocess.PIPE,
+                         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    output, err = p.communicate()
+    names = output.decode().splitlines()
+    playlist = list()
+    for i in range(len(names)):
+        playlist.append({"index": i+1, "name": names[i]})
+
+    return playlist
 

@@ -1,7 +1,7 @@
 from flask import render_template, request, jsonify
 
 from mpdplayer import app
-from .utils import run_command
+from .utils import run_command, get_playlist
 
 
 @app.route('/_status', methods=['POST'])
@@ -15,6 +15,17 @@ def status():
 def play_music():
     if request.method == 'POST':
         status = run_command(['mpc', 'play'])
+        return jsonify(status)
+
+
+@app.route('/_play_index', methods=['POST'])
+def play_music_index():
+    if request.method == 'POST':
+        req_data = request.json
+        print("AAAAAA")
+        print(req_data)
+        index = req_data.get('index')
+        status = run_command(['mpc', 'play', str(index)])
         return jsonify(status)
 
 
@@ -83,6 +94,7 @@ def play_single():
 
 @app.route('/')
 def index():
-    return render_template('home.html')
+    play_list = get_playlist()
+    return render_template('home.html', play_list=play_list)
 
 
