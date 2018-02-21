@@ -5,7 +5,7 @@
             <div class="col-xs-8">
                 <h4><span id="name"></span></h4>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-3">
                 <div class="volume_icon"><i class="material-icons">volume_up</i></div>
             </div>
         </div>
@@ -13,12 +13,21 @@
             <div class="col-xs-8">
                 <input id="play_percentage" type="range" min="1" max="100" value="0" class="slider">
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-3">
                 <input id="volume-percentage"  type="range" min="1" max="100" value="50" class="slider">
             </div>
         </div>
     </div>
     <br>
+    <div id="dialog" title="Dialog Form">
+        <form action="" method="post">
+            <label>Name:</label>
+            <input id="name" name="name" type="text">
+            <label>Email:</label>
+            <input id="email" name="email" type="text">
+            <input id="submit" type="submit" value="Submit">
+        </form>
+    </div>
     <div class="row">
         <div class="col-xs-12">
             <a id="btn-play" href="#"><i class="material-icons md-36">play_circle_filled</i></a>
@@ -31,6 +40,8 @@
             <a id="btn-shuffle" href="#"><i class="material-icons md-36">shuffle</i></a>
             <a id="btn-single" href="#"><i class="material-icons md-36">looks_one</i></a>
             <a id="btn-repeat" href="#"><i class="material-icons md-36">repeat</i></a>
+            <a id="btn-settimer" href="#"><i class="material-icons md-36">alarm</i></a>
+            <a id="btn-timeroff" href="#"><i class="material-icons md-36">alarm_off</i></a>
         </div>
     </div>
 </div>

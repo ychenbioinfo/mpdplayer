@@ -6,6 +6,10 @@ $(document).ready(function () {
     var mpd_mode = 0;
     var first_load = 1;
 
+    $("#dialog").dialog({
+        autoOpen: false
+    });
+
     $('#btn-play').click(function (e) {
         play_mode();
         mpd_mode = 1;
@@ -136,6 +140,11 @@ $(document).ready(function () {
             },
         });
     });
+
+    $('#btn-settimer').click(function (e) {
+        $("#dialog").dialog("open");
+    });
+
 
     $('.music_play').click(function(e) {
         var parent = $(e.target).closest('.play-group').html();

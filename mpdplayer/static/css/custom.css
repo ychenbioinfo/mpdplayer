@@ -19,7 +19,7 @@
     border-radius: 50%;
     background: #256298;
     cursor: pointer;
-    vertical-align:middle;
+    vertical-align: middle;
 }
 
 .slider::-moz-range-thumb {
@@ -28,26 +28,104 @@
     border-radius: 50%;
     background: #256298;
     cursor: pointer;
-    vertical-align:middle;
+    vertical-align: middle;
 }
 
 .volume_icon {
     margin-top: 10px;
 }
 
-a:link, a:visited, a:hover, a:active {
-  text-decoration: none; color: #256298;
+.ui-widget-overlay {
+   background: #AAA 50% 50% repeat-x;
+   opacity: 0;
+   filter: Alpha(Opacity=0);
 }
 
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
+a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: #256298;
+}
+
+#button {
+    border: 1px solid #0c799e;
+    width: 250px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 3px;
+    background: linear-gradient(to bottom, #59d0f8 5%, #49c0e8 100%);
+    cursor: pointer
+}
+
+#button:hover {
+    background: linear-gradient(to bottom, #49c0e8 5%, #59d0f8 100%)
+}
+
+input[type=text] {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    width: 96%;
+    border-radius: 5px;
+    border: 0;
+    padding: 5px 0
+}
+
+#name, #email {
+    padding-left: 10px
+}
+
+input[type=submit] {
+    width: 30%;
+    border: 1px solid #59b4d4;
+    background: #0078a3;
+    color: #eee;
+    padding: 3px 0;
+    border-radius: 5px;
+    margin-left: 33%;
+    cursor: pointer
+}
+
+input[type=submit]:hover {
+    border: 1px solid #666;
+    background: #555;
+    color: #fff
+}
+
+.ui-dialog .ui-dialog-content {
+    padding: 2em;
+}
+
+.material-icons.md-18 {
+    font-size: 18px;
+}
+
+.material-icons.md-24 {
+    font-size: 24px;
+}
+
+.material-icons.md-36 {
+    font-size: 36px;
+}
+
+.material-icons.md-48 {
+    font-size: 48px;
+}
 
 /* Rules for using icons as black on a light background. */
-.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
-.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+.material-icons.md-dark {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.material-icons.md-dark.md-inactive {
+    color: rgba(0, 0, 0, 0.26);
+}
 
 /* Rules for using icons as white on a dark background. */
-.material-icons.md-light { color: rgba(255, 255, 255, 1); }
-.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+.material-icons.md-light {
+    color: rgba(255, 255, 255, 1);
+}
+
+.material-icons.md-light.md-inactive {
+    color: rgba(255, 255, 255, 0.3);
+}
